@@ -1,0 +1,16 @@
+__pycache__/
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+.DS_Store
+.ipynb_checkpoints/
+node_modules/
+dist/
+build/
+.expo/
+.pytest_cache/
+data/raw/
+data/private/
+
