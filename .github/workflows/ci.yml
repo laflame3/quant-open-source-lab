@@ -20,4 +20,6 @@ jobs:
       - run: uv sync --locked --group dev
       - run: uv run ruff check .
       - run: uv run pytest -q
-      - run: uv run quant-lab --fast 3 --slow 5 --output artifacts/smoke
+      - run: uv run quant-lab backtrader --fast 3 --slow 5 --output artifacts/backtrader-smoke
+      - run: uv run quant-lab vectorbt --fast 3 --slow 5 --output artifacts/vectorbt-smoke
+      - run: uv run quant-lab compare --fast 3 --slow 5 --output artifacts/compare-smoke

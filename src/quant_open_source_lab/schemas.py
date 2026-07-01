@@ -11,3 +11,12 @@ class BacktestResult:
     metrics: dict[str, float]
     equity: pd.DataFrame
     trades: pd.DataFrame
+
+
+@dataclass(frozen=True)
+class ComparisonResult:
+    """Machine-readable comparison without asserting identical engine behavior."""
+
+    assumptions: dict[str, str]
+    metrics: pd.DataFrame
+    trade_summary: pd.DataFrame

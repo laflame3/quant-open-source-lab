@@ -13,6 +13,7 @@ dependencies = [
   "backtrader==1.9.78.123",
   "numpy>=1.26,<3",
   "pandas>=2.2,<3",
+  "vectorbt>=0.28,<0.29",
 ]
 
 [project.scripts]
