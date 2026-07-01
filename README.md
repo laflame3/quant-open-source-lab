@@ -1,6 +1,25 @@
 # Quant Open Source Lab
 
-A personal lab for studying open-source quantitative research and backtesting frameworks.
+A reproducible lab for studying open-source quantitative research and backtesting frameworks.
+
+## Current reproducible scope
+
+The implemented baseline compares callable Backtrader and vectorbt SMA-crossover
+engines on the same committed **synthetic** OHLCV fixture. Both paths share
+validated inputs, a next-bar execution contract, fixed-share sizing, commission,
+and structured outputs. Synthetic results verify software behavior only; they
+are not evidence of alpha or expected investment performance.
+
+```powershell
+uv sync --locked --group dev
+uv run pytest -q
+uv run quant-lab backtrader --fast 3 --slow 5 --output artifacts/backtrader-smoke
+uv run quant-lab vectorbt --fast 3 --slow 5 --output artifacts/vectorbt-smoke
+uv run quant-lab compare --fast 3 --slow 5 --output artifacts/compare-smoke
+```
+
+Python 3.11 is pinned in `.python-version`; dependencies are locked by `uv.lock`.
+See `AUDIT_EVIDENCE.md` for the exact evidence boundary.
 
 This repository records my long-term learning process around open-source quant tools. It is designed to keep real notes, runnable demos, architecture summaries, pitfalls, and research experiments under version control.
 
@@ -15,10 +34,8 @@ This repository records my long-term learning process around open-source quant t
 ## Current Focus Projects
 
 - Backtrader: event-driven backtesting framework.
-- vectorbt: vectorized backtesting and research framework.
-- Qlib: AI-oriented quantitative research workflow.
-- Lean: professional-grade backtesting and live trading engine.
-- OpenBB: financial data research terminal and platform.
+- vectorbt: implemented vectorized adapter under the shared baseline contract.
+- Qlib, Lean, and OpenBB: documented learning backlog; no runnable integration yet.
 
 ## Repository Structure
 
@@ -43,7 +60,7 @@ scripts/    Utility scripts for local setup and reproducible workflows.
 
 ## Next Plans
 
-- Start with Backtrader or vectorbt and create the first minimal moving-average demo.
+- Explain and regression-test remaining Backtrader/vectorbt execution differences.
 - Add source links, documentation links, and reading notes for each framework.
 - Compare event-driven and vectorized backtesting from the same simple CTA strategy.
 - Explore Qlib after the basic backtesting workflow is stable.

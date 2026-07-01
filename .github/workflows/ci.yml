@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  quality:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          version: "0.11.20"
+          enable-cache: true
+      - run: uv python install 3.11
+      - run: uv sync --locked --group dev
+      - run: uv run ruff check .
+      - run: uv run pytest -q
+      - run: uv run quant-lab backtrader --fast 3 --slow 5 --output artifacts/backtrader-smoke
+      - run: uv run quant-lab vectorbt --fast 3 --slow 5 --output artifacts/vectorbt-smoke
+      - run: uv run quant-lab compare --fast 3 --slow 5 --output artifacts/compare-smoke
