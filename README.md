@@ -1,6 +1,23 @@
 # Quant Open Source Lab
 
-A personal lab for studying open-source quantitative research and backtesting frameworks.
+A reproducible lab for studying open-source quantitative research and backtesting frameworks.
+
+## Current reproducible scope
+
+The implemented baseline is a callable Backtrader SMA-crossover engine running
+on a committed **synthetic** OHLCV fixture. It validates inputs and returns
+structured equity, execution, fee, and performance outputs. Synthetic results
+verify software behavior only; they are not evidence of alpha or expected
+investment performance.
+
+```powershell
+uv sync --locked --group dev
+uv run pytest -q
+uv run quant-lab --fast 3 --slow 5 --output artifacts/smoke
+```
+
+Python 3.11 is pinned in `.python-version`; dependencies are locked by `uv.lock`.
+See `AUDIT_EVIDENCE.md` for the exact evidence boundary.
 
 This repository records my long-term learning process around open-source quant tools. It is designed to keep real notes, runnable demos, architecture summaries, pitfalls, and research experiments under version control.
 
@@ -15,10 +32,8 @@ This repository records my long-term learning process around open-source quant t
 ## Current Focus Projects
 
 - Backtrader: event-driven backtesting framework.
-- vectorbt: vectorized backtesting and research framework.
-- Qlib: AI-oriented quantitative research workflow.
-- Lean: professional-grade backtesting and live trading engine.
-- OpenBB: financial data research terminal and platform.
+- vectorbt: planned vectorized comparison; not yet implemented.
+- Qlib, Lean, and OpenBB: documented learning backlog; no runnable integration yet.
 
 ## Repository Structure
 

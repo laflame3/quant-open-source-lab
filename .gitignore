@@ -11,6 +11,8 @@ dist/
 build/
 .expo/
 .pytest_cache/
+.ruff_cache/
+artifacts/
 data/raw/
 data/private/
 
